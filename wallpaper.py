@@ -6,7 +6,7 @@ import getpass
 import time
 
 #URL of the EarthPorn JSON
-url = 'http://www.reddit.com/r/earthporn.json' 
+url = 'http://www.reddit.com/r/wallpaper.json' 
 WallpaperCount=0
 
 #To remove non-jpg downloaded photos
@@ -99,13 +99,16 @@ def countdownDownload(timerDownload, timerupdate,count):
 	listwallpaper = returnwallpaper()
 	WallpaperCount = len(listwallpaper)
 	
+	setwallpaper(listwallpaper,count)
+	count += 1
+
 	#24 hour loop
 	while timerDownload:
 		#1 Minute Loop
 	    while timerupdate:
 	        time.sleep(1)
 	        timerupdate -= 1
-	    print("End of 10 Minutes, Wallpaper to be changed!")
+	    print("End of 15 Minutes, Wallpaper changed!")
 	    
 	    if(count>=WallpaperCount):
 	    	count = 0
