@@ -1,6 +1,6 @@
-[![MIT licensed](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
+[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Failing](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
-# Wallpapers from /r/EarthPornhttps://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg
+# Wallpapers from /r/EarthPornhttps:
 
 This Script will download all the Images (First page of hot section) from /r/EarthPorn subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
