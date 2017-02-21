@@ -9,11 +9,17 @@ import time
 url = 'http://www.reddit.com/r/earthporn.json' 
 WallpaperCount=0
 
+#To remove non-jpg downloaded photos
+def removeUnwantedPhotos(listwallpaper):
+	for paths in listwallpaper:
+		if os.path.getsize(paths) < 153600:
+			np = "rm " + paths
+			os.system(np)
 
 #Returns a list of wallpapers from the folder
 def returnwallpaper():
 	username = getpass.getuser()
-	listWallpaper = glob.glob("/home/"+username+"/wallpapers/*.jpg")
+	listWallpaper = glob.glob("/home/"+username+"/Wallpapers/*.jpg")
 	print("Wallpapers Returned : ",listWallpaper)	
 	return listWallpaper
 	
@@ -24,11 +30,22 @@ def setwallpaper(listwallpaper, count):
 
 
 def download(dCount):
+	print("Request error, Trying again!")
+	checkVar = 0
 
 	#open the URL of earthporn JSON and store the JSON data in umm... data
-	obj = urllib2.urlopen(url)
-	data = json.load(obj)
 
+	#ADD A WHILE LOOP ALONG WITH TRY AND 3 SECOND SLEEP TO AVOID TOO MANY REQUESTS ERROR
+	while(checkVar==dCount):
+		try:
+			obj = urllib2.urlopen(url)
+			data = json.load(obj)
+			print("Connection Established! Hurrah!")
+			checkVar += 1
+		except:
+			print("Request Error, Trying again!")
+			time.sleep(2)
+			pass
 	#Directory to save the downloaded images
 	username = getpass.getuser() #Gets current user to save files accordingly
 	directory = "/home/"+username+"/Wallpapers/"
@@ -44,18 +61,18 @@ def download(dCount):
 	  checkUrl = str(imurl)
 
 	  #Checking if the link extracted is actually an image
-	  if "jpg" in checkUrl:
-	  	print(checkUrl)
+	  if "" in checkUrl:
+	  	#print(checkUrl)
 	  	try:
 
 		    print imurl
 	    
 		    req = urllib2.Request(imurl+".jpg")
-		    if req:
-	    		print('Request done.')
+		    time.sleep(2)
 		    #Get the Data in the URL
 		    imgdata = urllib2.urlopen(req).read()
-		    
+		    time.sleep(2)
+		    print("Downloaded Image!")
 		    #Create a new image file and write to it
 		    fp = open((directory + "%s"+".jpg") %(dCount) ,"wb")
 		    
@@ -67,9 +84,8 @@ def download(dCount):
 	    
 		except:
 		    pass
-	    
-  
-  	print dCount
+        time.sleep(2)
+	print dCount
   	return dCount
 
 
@@ -79,6 +95,8 @@ def countdownDownload(timerDownload, timerupdate,count):
 	stu = timerupdate
 	
 	listwallpaper = returnwallpaper()
+	removeUnwantedPhotos(listwallpaper)
+	listwallpaper = returnwallpaper()
 	WallpaperCount = len(listwallpaper)
 	
 	#24 hour loop
@@ -87,7 +105,7 @@ def countdownDownload(timerDownload, timerupdate,count):
 	    while timerupdate:
 	        time.sleep(1)
 	        timerupdate -= 1
-	    print("End of 30 Minutes, Wallpaper to be changed!")
+	    print("End of 10 Minutes, Wallpaper to be changed!")
 	    
 	    if(count>=WallpaperCount):
 	    	count = 0
