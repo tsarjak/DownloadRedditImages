@@ -6,15 +6,15 @@ This works only on Gnome Based Desktops.
 
 ### Libraries Required:
 glob, urllib2, json, getpass
-'''python
+```python
 sudo pip install glob urllib2 json getpass
-'''
+```
 
 ### To run the code
 In terminal:
-'''python
+```python
 nohup python wallpaper.py &
-'''
+```
 ##### nohup command is used to keep the script running in background, even when the terminal is closed
 
 ### Add the script to run it as startup application
