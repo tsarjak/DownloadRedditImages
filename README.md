@@ -1,4 +1,4 @@
-[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Failing](https://img.shields.io/travis/USER/REPO.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
+[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Passing](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
 # Wallpapers from /r/EarthPornhttps:
 
