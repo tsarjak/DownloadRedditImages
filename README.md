@@ -1,4 +1,4 @@
-[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Failing](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
+[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Failing](https://img.shields.io/travis/USER/REPO.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
 # Wallpapers from /r/EarthPornhttps:
 
