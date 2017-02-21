@@ -123,7 +123,7 @@ def saveToPreferences(Preferences):
 def firstTimeDownload(Preferences):
 	if Preferences[3] == 0:
 		print("Downloading for the first time!")
-		dCount = download()
+		dCount = download(0)
 		Preferences[3] = 1
 		Preferences[4] = dCount
 	saveToPreferences(Preferences)
