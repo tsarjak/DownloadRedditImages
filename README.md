@@ -21,7 +21,7 @@ git clone https://github.com/tsarjak/WallpapersFromReddit.git
 In terminal:
 ```python
 #In Home Directory or the Directory in which you cloned/downloaded/installed the script
-cd ~/EarthPornWallpapers
+cd ~/WallpapersFromReddit
 nohup python wallpaper.py &
 ```
 ##### nohup command is used to keep the script running in background, even when the terminal is closed
