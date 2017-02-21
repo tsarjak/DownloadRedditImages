@@ -13,7 +13,7 @@ WallpaperCount=0
 #Returns a list of wallpapers from the folder
 def returnwallpaper():
 	username = getpass.getuser()
-	listWallpaper = glob.glob("/home/"+username+"/twallpapers/*.jpg")
+	listWallpaper = glob.glob("/home/"+username+"/wallpapers/*.jpg")
 	print("Wallpapers Returned : ",listWallpaper)	
 	return listWallpaper
 	
