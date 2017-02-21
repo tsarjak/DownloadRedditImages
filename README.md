@@ -1,8 +1,8 @@
 [![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Passing](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
-# Wallpapers from /r/EarthPornhttps:
+# Wallpapers from /r/wallpaper:
 
-This Script will download all the Images (First page of hot section) from /r/EarthPorn subreddit to a local folder every 24 hours.
+This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
 This works only on Gnome Based Desktops.
 
@@ -13,7 +13,7 @@ sudo pip install glob urllib2 json getpass
 ```
 ### To Install
 ```python
-git clone https://github.com/tsarjak/EarthPornWallpapers.git
+git clone https://github.com/tsarjak/WallpapersFromReddit.git
 ```
 
 
