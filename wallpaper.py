@@ -5,7 +5,7 @@ import os
 import getpass
 import time
 
-#URL of the EarthPorn JSON
+#URL of the wallpaper JSON
 url = 'http://www.reddit.com/r/wallpaper.json' 
 WallpaperCount=0
 
