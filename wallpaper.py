@@ -4,20 +4,16 @@ import json
 import os
 import getpass
 import time
-import platform
 
-
+#URL of the wallpaper JSON
+url = 'http://www.reddit.com/r/wallpaper.json' 
+WallpaperCount=0
 
 def checkPlatform():
 	if platform.system == 'Windows' :
 		return 0 #if platform == windows
 	if platform.system == 'Linux' :
 		return 1 #if platform == linux
-
-
-#URL of the EarthPorn JSON
-url = 'http://www.reddit.com/r/wallpaper.json' 
-WallpaperCount=0
 
 #To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
@@ -129,7 +125,7 @@ def countdownDownload(timerDownload, timerupdate,count, pt):
 	    if(count>=WallpaperCount):
 	    	count = 0
 
-	    setwallpaper(listwallpaper,count,pt)	
+	    setwallpaper(listwallpaper,count)	
 	    count += 1	
 
 	    timerupdate = stu	
