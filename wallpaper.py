@@ -4,6 +4,16 @@ import json
 import os
 import getpass
 import time
+import platform
+
+
+
+def checkPlatform():
+	if platform.system == 'Windows' :
+		return 0 #if platform == windows
+	if platform.system == 'Linux' :
+		return 1 #if platform == linux
+
 
 #URL of the EarthPorn JSON
 url = 'http://www.reddit.com/r/wallpaper.json' 
@@ -24,8 +34,14 @@ def returnwallpaper():
 	return listWallpaper
 	
 #Gets the list of wallpaper and sets a new wallpaper based on count
-def setwallpaper(listwallpaper, count):
-	filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
+def setwallpaper(listwallpaper, count, pt):
+	if(pt == 0):
+		import ctype
+		os.system("SPI_SETDESKWALLPAPER = 20")
+		filepath = "ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, " + listwallpaper[count] + " , 0)"
+	else if(pt==1):
+		filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
+		
 	os.system(filepath)
 
 
@@ -90,7 +106,7 @@ def download(dCount):
 
 
 #Time Countdown function to check wallpaper change time or download time
-def countdownDownload(timerDownload, timerupdate,count):
+def countdownDownload(timerDownload, timerupdate,count, pt):
 
 	stu = timerupdate
 	
@@ -113,7 +129,7 @@ def countdownDownload(timerDownload, timerupdate,count):
 	    if(count>=WallpaperCount):
 	    	count = 0
 
-	    setwallpaper(listwallpaper,count)	
+	    setwallpaper(listwallpaper,count,pt)	
 	    count += 1	
 
 	    timerupdate = stu	
@@ -159,9 +175,10 @@ Preferences = fetchPreferences()
 timerDownload = Preferences[2] * 60 * 60
 timerupdate = Preferences[1] * 60
 
+pt = checkPlatform()
 
 while(1):
 	count=0
-	dCount = countdownDownload(timerDownload, timerupdate,count)
+	dCount = countdownDownload(timerDownload, timerupdate,count, pt)
 	Preferences[4] = dCount
 	saveToPreferences(Preferences)
