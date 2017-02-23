@@ -22,6 +22,13 @@ In terminal:
 ```python
 #In Home Directory or the Directory in which you cloned/downloaded/installed the script
 cd ~/WallpapersFromReddit
+python wallpaper.py --subreddit <your choice of subreddit> //Example : python wallpaper.py --subreddit earthporn
+// --subreddit part is optional - By default it will fetch images from /r/wallpaper
+//You can see the progress of the download after above execution
+```
+
+### After First run, you might want to run the app in background (This is possible even on first run!)
+```python
 nohup python wallpaper.py &
 ```
 ##### nohup command is used to keep the script running in background, even when the terminal is closed
