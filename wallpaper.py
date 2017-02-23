@@ -4,15 +4,28 @@ import json
 import os
 import getpass
 import time
+import argparse
 
 #URL of the wallpaper JSON
-url = 'http://www.reddit.com/r/wallpaper.json' 
+url = 'http://www.reddit.com/r/wallpaper.json' #Default url - if no subreddit specified then use this
 WallpaperCount=0
+
+#ArgParse function to enter subreddit name or to download new images right now!
+def parse_args():
+	parser = argparse.ArgumentParser(
+		description = 'Set wallpaper from your choice of subreddit!')
+	parser.add_argument(
+		'--subreddit', type=str, help = 'Your choice of subreddit to download Images')
+	args = parser.parse_args()
+	if args.subreddit :
+		return args.subreddit
+	else :
+		return None
 
 #To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
 	for paths in listwallpaper:
-		if os.path.getsize(paths) < 153600:
+		if os.path.getsize(paths) < 102400:
 			np = "rm " + paths
 			os.system(np)
 
@@ -30,12 +43,9 @@ def setwallpaper(listwallpaper, count):
 
 
 def download(dCount):
-	print("Request error, Trying again!")
 	checkVar = 0
 
-	#open the URL of earthporn JSON and store the JSON data in umm... data
-
-	#ADD A WHILE LOOP ALONG WITH TRY AND 3 SECOND SLEEP TO AVOID TOO MANY REQUESTS ERROR
+	#To avoid 'Too many requests error - 2 second wait and try again in case of error'
 	while(checkVar==dCount):
 		try:
 			obj = urllib2.urlopen(url)
@@ -123,7 +133,6 @@ def countdownDownload(timerDownload, timerupdate,count):
 	return dCount
 
 
-
 #Function to fetch preferences from file
 def fetchPreferences():
 	Preferences = list()
@@ -151,17 +160,26 @@ def firstTimeDownload(Preferences):
 	return Preferences
 
 
+def main():
+	Preferences = fetchPreferences()
+	Preferences = firstTimeDownload(Preferences)
+	Preferences = fetchPreferences()
 
-Preferences = fetchPreferences()
-Preferences = firstTimeDownload(Preferences)
-Preferences = fetchPreferences()
-
-timerDownload = Preferences[2] * 60 * 60
-timerupdate = Preferences[1] * 60
+	timerDownload = Preferences[2] * 60 * 60
+	timerupdate = Preferences[1] * 60
 
 
-while(1):
-	count=0
-	dCount = countdownDownload(timerDownload, timerupdate,count)
-	Preferences[4] = dCount
-	saveToPreferences(Preferences)
+	while(1):
+		count=0
+		dCount = countdownDownload(timerDownload, timerupdate,count)
+		Preferences[4] = dCount
+		saveToPreferences(Preferences)
+
+if __name__ == '__main__':
+
+	user_choice = parse_args()
+	if not user_choice:
+		url = 'http://www.reddit.com/r/wallpaper.json'
+	else:
+		url = 'http://www.reddit.com/r/' + user_choice + '.json'
+	main()
