@@ -8,24 +8,24 @@ This works only on Gnome Based Desktops.
 
 ### Libraries Required:
 glob, urllib2, json, getpass
-```python
+```shell
 sudo pip install glob urllib2 json getpass
 ```
 ### To Install
-```python
+```shell
 git clone https://github.com/tsarjak/WallpapersFromReddit.git
 ```
 
 
 ### To run the code
 In terminal:
-```python
+```shell
 #In Home Directory or the Directory in which you cloned/downloaded/installed the script
 cd ~/WallpapersFromReddit
 python wallpaper.py --subreddit <your choice of subreddit> 
 ```
 #### Example : 
-```python
+```shell
 python wallpaper.py --subreddit earthporn
 ```
 #### --Subreddit part is optional - By default it will fetch images from /r/wallpaper
@@ -33,7 +33,7 @@ python wallpaper.py --subreddit earthporn
 
 ### After First run, you might want to run the app in background (This is possible even on first run!)
 
-```python
+```shell
 nohup python wallpaper.py &
 ```
 ##### nohup command is used to keep the script running in background, even when the terminal is closed
