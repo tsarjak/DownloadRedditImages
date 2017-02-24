@@ -40,8 +40,8 @@ nohup python wallpaper.py &
 
 ### Add the script to run it as startup application
 
-##### Goto "Startup Applications"
-##### Click "Add" -> Click "Custom Command" -> Enter command as "nohup python ~/wallpaper.py &", enter name and other details and save
+Goto "Startup Applications"
+Click "Add" -> Click "Custom Command" -> Enter command as "nohup python ~/wallpaper.py &", enter name and other details and save
 
 
 #### Custom Preferences and more Subreddits comming soon! :)
