@@ -35,7 +35,7 @@ def setwallpaper(listwallpaper, count, pt):
 		import ctype
 		os.system("SPI_SETDESKWALLPAPER = 20")
 		filepath = "ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, " + listwallpaper[count] + " , 0)"
-	else if(pt==1):
+	elif pt==1:
 		filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
 		
 	os.system(filepath)
