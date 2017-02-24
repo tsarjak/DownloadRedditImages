@@ -9,6 +9,7 @@ import time
 #URL of the wallpaper JSON
 url = 'http://www.reddit.com/r/wallpaper.json' 
 WallpaperCount=0
+pt = 0 #Making the check platform counter global - difficult to pass in to many functions and keep a track of it!
 
 #ArgParse function to enter subreddit name or to download new images right now!
 def parse_args():
@@ -24,9 +25,9 @@ def parse_args():
 
 def checkPlatform():
 	if platform.system == 'Windows' :
-		return 0 #if platform == windows
+		pt = 0 #if platform == windows
 	if platform.system == 'Linux' :
-		return 1 #if platform == linux
+		pt = 1 #if platform == linux
 
 #To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
@@ -43,7 +44,7 @@ def returnwallpaper():
 	return listWallpaper
 	
 #Gets the list of wallpaper and sets a new wallpaper based on count
-def setwallpaper(listwallpaper, count, pt):
+def setwallpaper(listwallpaper, count):
 	if(pt == 0):
 		import ctype
 		os.system("SPI_SETDESKWALLPAPER = 20")
@@ -71,6 +72,10 @@ def download(dCount):
 			print("Request Error, Trying again!")
 			time.sleep(2)
 			pass
+
+
+	#NEED TO MODIFY THE 'directory = "/home/"+username+"/Wallpapers/"' LINE TO MAKE THE CODE WORK WITH WINDOWS, AS THE FILE STRUCTURE IS DIFFERENT :/
+
 	#Directory to save the downloaded images
 	username = getpass.getuser() #Gets current user to save files accordingly
 	directory = "/home/"+username+"/Wallpapers/"
@@ -115,7 +120,7 @@ def download(dCount):
 
 
 #Time Countdown function to check wallpaper change time or download time
-def countdownDownload(timerDownload, timerupdate,count, pt):
+def countdownDownload(timerDownload, timerupdate,count):
 
 	stu = timerupdate
 	
@@ -184,11 +189,11 @@ def main():
 	timerDownload = Preferences[2] * 60 * 60
 	timerupdate = Preferences[1] * 60
 
-	pt = checkPlatform()
+	checkPlatform()
 
 	while(1):
 		count=0
-		dCount = countdownDownload(timerDownload, timerupdate,count, pt)
+		dCount = countdownDownload(timerDownload, timerupdate,count)
 		Preferences[4] = dCount
 		saveToPreferences(Preferences)
 	
