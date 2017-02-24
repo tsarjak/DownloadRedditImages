@@ -5,9 +5,22 @@ import os
 import getpass
 import time
 
+
 #URL of the wallpaper JSON
 url = 'http://www.reddit.com/r/wallpaper.json' 
 WallpaperCount=0
+
+#ArgParse function to enter subreddit name or to download new images right now!
+def parse_args():
+	parser = argparse.ArgumentParser(
+		description = 'Set wallpaper from your choice of subreddit!')
+	parser.add_argument(
+		'--subreddit', type=str, help = 'Your choice of subreddit to download Images')
+	args = parser.parse_args()
+	if args.subreddit :
+		return args.subreddit
+	else :
+		return None
 
 def checkPlatform():
 	if platform.system == 'Windows' :
@@ -163,18 +176,26 @@ def firstTimeDownload(Preferences):
 	return Preferences
 
 
+def main():
+	Preferences = fetchPreferences()
+	Preferences = firstTimeDownload(Preferences)
+	Preferences = fetchPreferences()
+	
+	timerDownload = Preferences[2] * 60 * 60
+	timerupdate = Preferences[1] * 60
 
-Preferences = fetchPreferences()
-Preferences = firstTimeDownload(Preferences)
-Preferences = fetchPreferences()
+	pt = checkPlatform()
 
-timerDownload = Preferences[2] * 60 * 60
-timerupdate = Preferences[1] * 60
-
-pt = checkPlatform()
-
-while(1):
-	count=0
-	dCount = countdownDownload(timerDownload, timerupdate,count, pt)
-	Preferences[4] = dCount
-	saveToPreferences(Preferences)
+	while(1):
+		count=0
+		dCount = countdownDownload(timerDownload, timerupdate,count, pt)
+		Preferences[4] = dCount
+		saveToPreferences(Preferences)
+	
+if __name__ == '__main__':
+	user_choice = parse_args()
+	if not user_choice:
+		url = 'http://www.reddit.com/r/wallpaper.json'
+	else:
+		url = 'http://www.reddit.com/r/' + user_choice + '.json'
+	main()
