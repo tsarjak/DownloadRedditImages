@@ -11,6 +11,7 @@ from PIL import Image
 url = 'http://www.reddit.com/r/wallpaper.json' #Default url - if no subreddit specified then use this
 WallpaperCount=0
 hqchoice=0
+downloadNow=0
 
 #ArgParse function to enter subreddit name or to download new images right now!
 def parse_args():
@@ -19,6 +20,7 @@ def parse_args():
 	parser.add_argument(
 		'--subreddit', type=str, help = 'Your choice of subreddit to download Images')
 	parser.add_argument('-hq', action='store_true', help = 'If you want to download only high quality photos')
+	parser.add_argument('-download', action='store_true', help = 'Download the photos now!')
 	args = parser.parse_args()
 	return args
 
@@ -57,7 +59,7 @@ def download(dCount):
 		try:
 			obj = urllib2.urlopen(url)
 			data = json.load(obj)
-			print("Connection Established! Hurrah!")
+			print("Connection Established! Hurray!")
 			checkVar += 1
 		except:
 			print("Request Error, Trying again!")
@@ -77,31 +79,28 @@ def download(dCount):
 	  imurl = i["data"]["url"]
 	  checkUrl = str(imurl)
 
-	  #Checking if the link extracted is actually an image
-	  if "" in checkUrl:
-	  	#print(checkUrl)
-	  	try:
+  	try:
 
-		    print imurl
+	    print imurl
+    
+	    req = urllib2.Request(imurl+".jpg")
+	    time.sleep(2)
+	    #Get the Data in the URL
+	    imgdata = urllib2.urlopen(req).read()
+	    time.sleep(2)
+	    print("Downloaded Image!")
+	    #Create a new image file and write to it
+	    fp = open((directory + "%s"+".jpg") %(dCount) ,"wb")
 	    
-		    req = urllib2.Request(imurl+".jpg")
-		    time.sleep(2)
-		    #Get the Data in the URL
-		    imgdata = urllib2.urlopen(req).read()
-		    time.sleep(2)
-		    print("Downloaded Image!")
-		    #Create a new image file and write to it
-		    fp = open((directory + "%s"+".jpg") %(dCount) ,"wb")
-		    
-		    fp.write(imgdata)
+	    fp.write(imgdata)
 
-		    fp.close()
+	    fp.close()
 
-		    dCount = dCount + 1
-	    
-		except:
-		    pass
-        time.sleep(2)
+	    dCount = dCount + 1
+    
+	except:
+	    pass
+	time.sleep(2)
 	print dCount
   	return dCount
 
@@ -158,8 +157,8 @@ def saveToPreferences(Preferences):
 
 #To download wallpapers automatically on first run
 def firstTimeDownload(Preferences):
-	if Preferences[3] == 0:
-		print("Downloading for the first time!")
+	if Preferences[3] == 0 or downloadNow==1:
+		print("Downloading")
 		dCount = download(0)
 		Preferences[3] = 1
 		Preferences[4] = dCount
@@ -191,4 +190,7 @@ if __name__ == '__main__':
 		url = 'http://www.reddit.com/r/' + user_choice.subreddit + '.json'
 	if user_choice.hq == True:
 		hqchoice = 1
+	print(user_choice.download)
+	if user_choice.download == True:
+		downloadNow=1
 	main()
