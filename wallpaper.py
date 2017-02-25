@@ -15,8 +15,6 @@ hqchoice = 0
 downloadNow = 0
 
 
-
-
 # To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
     for paths in listwallpaper:
@@ -32,7 +30,6 @@ def removeUnwantedPhotos(listwallpaper):
 
 # Returns a list of wallpapers from the folder
 
-
 def returnwallpaper():
     username = getpass.getuser()
     listWallpaper = glob.glob("/home/"+username+"/Wallpapers/*.jpg")
@@ -41,12 +38,11 @@ def returnwallpaper():
 
 # Gets the list of wallpaper and sets a new wallpaper based on count
 
-
 def setwallpaper(listwallpaper, count):
     filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
     os.system(filepath)
 
-
+    
 def download(dCount):
     checkVar = 0
 
