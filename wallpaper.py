@@ -1,11 +1,13 @@
+import argparse
+import getpass
 import glob
-import urllib2
 import json
 import os
-import getpass
 import time
-import argparse
+import urllib2
+
 from PIL import Image
+
 
 # URL of the wallpaper JSON
 # Default url - if no subreddit specified then use this
