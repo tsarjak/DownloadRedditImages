@@ -20,10 +20,7 @@ def parse_args():
 		'--subreddit', type=str, help = 'Your choice of subreddit to download Images')
 	parser.add_argument('-hq', action='store_true', help = 'If you want to download only high quality photos')
 	args = parser.parse_args()
-	if args.subreddit :
-		return args
-	else :
-		return None
+	return args
 
 
 #To remove non-jpg downloaded photos
@@ -191,7 +188,7 @@ if __name__ == '__main__':
 	if not user_choice.subreddit:
 		url = 'http://www.reddit.com/r/wallpaper.json'
 	else:
-		url = 'http://www.reddit.com/r/' + user_choice + '.json'
+		url = 'http://www.reddit.com/r/' + user_choice.subreddit + '.json'
 	if user_choice.hq == True:
 		hqchoice = 1
 	main()
