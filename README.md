@@ -22,21 +22,22 @@ In terminal:
 ```shell
 #In Home Directory or the Directory in which you cloned/downloaded/installed the script
 cd ~/WallpapersFromReddit
-python wallpaper.py --subreddit <your choice of subreddit> 
+python wallpaper.py --subreddit <your choice of subreddit> -hq
+#add -hq at the end if you only want high quality photos from the subreddit, by default it will download all the images!
 ```
-#### Example : 
+Example : 
 ```shell
-python wallpaper.py --subreddit earthporn
+python wallpaper.py --subreddit earthporn -hq
 ```
-#### --Subreddit part is optional - By default it will fetch images from /r/wallpaper
-#### You can see the progress of the download after above execution
+--Subreddit part is optional - By default it will fetch images from /r/wallpaper
+You can see the progress of the download after above execution
 
 ### After First run, you might want to run the app in background (This is possible even on first run!)
 
 ```shell
 nohup python wallpaper.py &
 ```
-##### nohup command is used to keep the script running in background, even when the terminal is closed
+nohup command is used to keep the script running in background, even when the terminal is closed
 
 ### Add the script to run it as startup application
 
