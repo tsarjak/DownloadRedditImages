@@ -5,10 +5,12 @@ import os
 import getpass
 import time
 import argparse
+from PIL import Image
 
 #URL of the wallpaper JSON
 url = 'http://www.reddit.com/r/wallpaper.json' #Default url - if no subreddit specified then use this
 WallpaperCount=0
+hqchoice=0
 
 #ArgParse function to enter subreddit name or to download new images right now!
 def parse_args():
@@ -16,11 +18,13 @@ def parse_args():
 		description = 'Set wallpaper from your choice of subreddit!')
 	parser.add_argument(
 		'--subreddit', type=str, help = 'Your choice of subreddit to download Images')
+	parser.add_argument('-hq', action='store_true', help = 'If you want to download only high quality photos')
 	args = parser.parse_args()
 	if args.subreddit :
-		return args.subreddit
+		return args
 	else :
 		return None
+
 
 #To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
@@ -28,6 +32,12 @@ def removeUnwantedPhotos(listwallpaper):
 		if os.path.getsize(paths) < 102400:
 			np = "rm " + paths
 			os.system(np)
+		if hqchoice==1:
+			with Image.open(paths) as im:
+				width, height = im.size
+				if width < 1500 or height < 1500:
+					np = "rm" + paths
+					os.system(np)
 
 #Returns a list of wallpapers from the folder
 def returnwallpaper():
@@ -178,8 +188,10 @@ def main():
 if __name__ == '__main__':
 
 	user_choice = parse_args()
-	if not user_choice:
+	if not user_choice.subreddit:
 		url = 'http://www.reddit.com/r/wallpaper.json'
 	else:
 		url = 'http://www.reddit.com/r/' + user_choice + '.json'
+	if user_choice.hq == True:
+		hqchoice = 1
 	main()
