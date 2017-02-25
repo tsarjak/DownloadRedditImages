@@ -1,6 +1,6 @@
 [![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Passing](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
-# Wallpapers from /r/wallpaper:
+# Wallpapers from your choice of Subreddit (default - /r/wallpaper):
 
 This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
