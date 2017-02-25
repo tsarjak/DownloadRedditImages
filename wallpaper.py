@@ -14,21 +14,7 @@ WallpaperCount = 0
 hqchoice = 0
 downloadNow = 0
 
-# ArgParse function to enter subreddit name or to download new images
-# right now!
 
-
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description='Set wallpaper from your choice of subreddit!')
-    parser.add_argument(''
-        '--subreddit', type=str, help='Your choice of subreddit to download Images')
-    parser.add_argument('-hq', action='store_true',
-                        help='If you want to download only high quality photos')
-    parser.add_argument(
-        '-download', action='store_true', help='Download the photos now!')
-    args = parser.parse_args()
-    return args
 
 
 # To remove non-jpg downloaded photos
@@ -195,6 +181,21 @@ def main():
         saveToPreferences(Preferences)
 
 if __name__ == '__main__':
+
+    # ArgParse function to enter subreddit name or to download new images right now
+
+
+    def parse_args():
+        parser = argparse.ArgumentParser(
+            description='Set wallpaper from your choice of subreddit!')
+        parser.add_argument(''
+            '--subreddit', type=str, help='Your choice of subreddit to download Images')
+        parser.add_argument('-hq', action='store_true',
+                            help='If you want to download only high quality photos')
+        parser.add_argument(
+            '-download', action='store_true', help='Download the photos now!')
+        args = parser.parse_args()
+        return args
 
     user_choice = parse_args()
     if not user_choice.subreddit:
