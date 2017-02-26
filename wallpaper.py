@@ -5,9 +5,19 @@ import json
 import os
 import time
 import urllib2
-
 from PIL import Image
 
+ def parse_args():
+        parser = argparse.ArgumentParser(
+            description='Set wallpaper from your choice of subreddit!')
+        parser.add_argument(''
+            '--subreddit', type=str, help='Your choice of subreddit to download Images')
+        parser.add_argument('-hq', action='store_true',
+                            help='If you want to download only high quality photos')
+        parser.add_argument(
+            '-download', action='store_true', help='Download the photos now!')
+        args = parser.parse_args()
+        return args
 
 # URL of the wallpaper JSON
 # Default url - if no subreddit specified then use this
@@ -16,9 +26,8 @@ WallpaperCount = 0
 hqchoice = 0
 downloadNow = 0
 
-
-# To remove non-jpg downloaded photos
 def removeUnwantedPhotos(listwallpaper):
+    '''To remove non-jpg downloaded photos'''
     for paths in listwallpaper:
         if os.path.getsize(paths) < 102400:
             np = "rm " + paths
@@ -30,17 +39,17 @@ def removeUnwantedPhotos(listwallpaper):
                     np = "rm" + paths
                     os.system(np)
 
-# Returns a list of wallpapers from the folder
-
 def returnwallpaper():
+    '''Returns a list of wallpapers from the folder'''
     username = getpass.getuser()
     listWallpaper = glob.glob("/home/"+username+"/Wallpapers/*.jpg")
     print("Wallpapers Returned : ", listWallpaper)
     return listWallpaper
 
-# Gets the list of wallpaper and sets a new wallpaper based on count
+
 
 def setwallpaper(listwallpaper, count):
+    '''Gets the list of wallpaper and sets a new wallpaper based on count'''
     filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
     os.system(filepath)
 
@@ -48,8 +57,7 @@ def setwallpaper(listwallpaper, count):
 def download(dCount):
     checkVar = 0
 
-    # To avoid 'Too many requests error - 2 second wait and try again in case
-    # of error'
+    # To avoid 'Too many requests error - 2 second wait and try again in case error
     while(checkVar == dCount):
         try:
             obj = urllib2.urlopen(url)
@@ -64,7 +72,6 @@ def download(dCount):
     username = getpass.getuser()  # Gets current user to save files accordingly
     directory = "/home/"+username+"/Wallpapers/"
 
-    # Check if Directory alredy exists, If doesn't exist, create new directory
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -79,11 +86,9 @@ def download(dCount):
 
         req = urllib2.Request(imurl+".jpg")
         time.sleep(2)
-        # Get the Data in the URL
         imgdata = urllib2.urlopen(req).read()
         time.sleep(2)
         print("Downloaded Image!")
-        # Create a new image file and write to it
         fp = open((directory + "%s"+".jpg") % (dCount), "wb")
 
         fp.write(imgdata)
@@ -99,9 +104,10 @@ def download(dCount):
     return dCount
 
 
-# Time Countdown function to check wallpaper change time or download time
-def countdownDownload(timerDownload, timerupdate, count):
 
+def countdownDownload(timerDownload, timerupdate, count):
+    '''Time Countdown function to check wallpaper change time or download time'''
+    
     stu = timerupdate
 
     listwallpaper = returnwallpaper()
@@ -132,29 +138,24 @@ def countdownDownload(timerDownload, timerupdate, count):
     dCount = download()
     return dCount
 
-
-# Function to fetch preferences from file
 def fetchPreferences():
+    '''Function to fetch preferences from file'''
     Preferences = list()
     pref = open("WpPreferences.txt", "r")
     for word in pref.read().split():
         Preferences.append(int(word))
     return Preferences
 
-# Function to the Index of Latest downloaded Wallpaper
-
-
 def saveToPreferences(Preferences):
+    '''Function to the Index of Latest downloaded Wallpaper'''
     for i in range(0, 5):
         Preferences[i] = str(Preferences[i])
         Preferences[i] = Preferences[i] + "\n"
     with open('WpPreferences.txt', 'w') as file:
         file.writelines(Preferences)
 
-# To download wallpapers automatically on first run
-
-
 def firstTimeDownload(Preferences):
+    '''To download wallpapers automatically on first run'''
     if Preferences[3] == 0 or downloadNow == 1:
         print("Downloading")
         dCount = download(0)
@@ -179,22 +180,6 @@ def main():
         saveToPreferences(Preferences)
 
 if __name__ == '__main__':
-
-    # ArgParse function to enter subreddit name or to download new images right now
-
-
-    def parse_args():
-        parser = argparse.ArgumentParser(
-            description='Set wallpaper from your choice of subreddit!')
-        parser.add_argument(''
-            '--subreddit', type=str, help='Your choice of subreddit to download Images')
-        parser.add_argument('-hq', action='store_true',
-                            help='If you want to download only high quality photos')
-        parser.add_argument(
-            '-download', action='store_true', help='Download the photos now!')
-        args = parser.parse_args()
-        return args
-
     user_choice = parse_args()
     if not user_choice.subreddit:
         url = 'http://www.reddit.com/r/wallpaper.json'
