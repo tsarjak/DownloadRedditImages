@@ -4,7 +4,10 @@ import glob
 import json
 import os
 import time
-import urllib2
+try:
+    from urllib2 import Request, urlopen
+except ImportError:
+    from urllib import Request, urlopen
 from PIL import Image
 
 
@@ -61,7 +64,7 @@ def download(dCount):
     # To avoid 'Too many requests error - 2 second wait and try again in case error
     while(checkVar == dCount):
         try:
-            obj = urllib2.urlopen(url)
+            obj = urlopen(url)
             data = json.load(obj)
             print("Connection Established! Hurray!")
             checkVar += 1
@@ -83,11 +86,11 @@ def download(dCount):
 
     try:
 
-        print imurl
+        print(imurl)
 
-        req = urllib2.Request(imurl+".jpg")
+        req = Request(imurl+".jpg")
         time.sleep(2)
-        imgdata = urllib2.urlopen(req).read()
+        imgdata = urlopen(req).read()
         time.sleep(2)
         print("Downloaded Image!")
         fp = open((directory + "%s"+".jpg") % (dCount), "wb")
@@ -101,7 +104,7 @@ def download(dCount):
     except:
         pass
     time.sleep(2)
-    print dCount
+    print(dCount)
     return dCount
 
 
