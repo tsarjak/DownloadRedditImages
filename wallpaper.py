@@ -7,7 +7,8 @@ import time
 import urllib2
 from PIL import Image
 
- def parse_args():
+
+def parse_args():
         parser = argparse.ArgumentParser(
             description='Set wallpaper from your choice of subreddit!')
         parser.add_argument(''
