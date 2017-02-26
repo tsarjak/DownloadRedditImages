@@ -6,11 +6,6 @@ This Script will download all the Images (First page of hot section) from /r/Wal
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
 This works only on Gnome Based Desktops.
 
-### Libraries Required:
-glob, urllib2, json, getpass
-```shell
-sudo pip install glob urllib2 json getpass
-```
 ### To Install
 ```shell
 git clone https://github.com/tsarjak/WallpapersFromReddit.git
