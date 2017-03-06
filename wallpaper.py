@@ -81,26 +81,26 @@ def download(dCount):
         imurl = i["data"]["url"]
         checkUrl = str(imurl)
 
-    try:
+        try:
 
-        print imurl
+            print imurl
 
-        req = urllib2.Request(imurl+".jpg")
-        time.sleep(2)
-        imgdata = urllib2.urlopen(req).read()
-        time.sleep(2)
-        print("Downloaded Image!")
-        fp = open((directory + "%s"+".jpg") % (dCount), "wb")
+            req = urllib2.Request(imurl+".jpg")
+            time.sleep(2)
+            imgdata = urllib2.urlopen(req).read()
+            time.sleep(2)
+            print("Downloaded Image!")
+            fp = open((directory + "%s"+".jpg") % (dCount), "wb")
 
-        fp.write(imgdata)
+            fp.write(imgdata)
 
-        fp.close()
+            fp.close()
 
-        dCount = dCount + 1
+            dCount = dCount + 1
 
-    except:
-        pass
-    time.sleep(2)
+        except:
+            pass
+            time.sleep(2)
     print dCount
     return dCount
 
