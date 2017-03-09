@@ -6,6 +6,8 @@ import os
 import time
 import urllib2
 from PIL import Image
+import pwd
+import platform
 
 
 def parse_args():
@@ -26,6 +28,20 @@ url = 'http://www.reddit.com/r/wallpaper.json'
 WallpaperCount = 0
 hqchoice = 0
 downloadNow = 0
+ops=0
+directory = ""
+
+def getOs():
+    global directory
+    global ops
+    print("Inside getOs")
+    username = pwd.getpwuid(os.getuid()).pw_name
+    if platform.system()=="Darwin":
+        directory = "/Users/" + username + "/Pictures/Wallpapers/"
+        ops=1
+    elif platform.system()=="Linux":
+        directory = "/home/"+username+"/Wallpapers/"
+        ops=0
 
 def removeUnwantedPhotos(listwallpaper):
     '''To remove non-jpg downloaded photos'''
@@ -42,8 +58,9 @@ def removeUnwantedPhotos(listwallpaper):
 
 def returnwallpaper():
     '''Returns a list of wallpapers from the folder'''
-    username = getpass.getuser()
-    listWallpaper = glob.glob("/home/"+username+"/Wallpapers/*.jpg")
+    directoryWall = directory + "*.jpg"
+    print(directoryWall)
+    listWallpaper = glob.glob(directoryWall)
     print("Wallpapers Returned : ", listWallpaper)
     return listWallpaper
 
@@ -51,13 +68,15 @@ def returnwallpaper():
 
 def setwallpaper(listwallpaper, count):
     '''Gets the list of wallpaper and sets a new wallpaper based on count'''
-    filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
+    if ops==0:
+        filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
+    elif ops==1:
+        filepath = "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"" + listwallpaper[count] +"\"'"
     os.system(filepath)
 
     
 def download(dCount):
     checkVar = 0
-
     # To avoid 'Too many requests error - 2 second wait and try again in case error
     while(checkVar == dCount):
         try:
@@ -69,9 +88,7 @@ def download(dCount):
             print("Request Error, Trying again!")
             time.sleep(2)
             pass
-    # Directory to save the downloaded images
-    username = getpass.getuser()  # Gets current user to save files accordingly
-    directory = "/home/"+username+"/Wallpapers/"
+
 
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -167,6 +184,7 @@ def firstTimeDownload(Preferences):
 
 
 def main():
+    getOs()
     Preferences = fetchPreferences()
     Preferences = firstTimeDownload(Preferences)
     Preferences = fetchPreferences()
