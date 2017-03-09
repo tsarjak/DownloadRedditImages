@@ -71,7 +71,7 @@ def setwallpaper(listwallpaper, count):
     if ops==0:
         filepath = "gsettings set org.gnome.desktop.background picture-uri file:" + listwallpaper[count]
     elif ops==1:
-        filepath = "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"" + listwallpaper[count] +"\""
+        filepath = "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"" + listwallpaper[count] +"\"'"
     os.system(filepath)
 
     
