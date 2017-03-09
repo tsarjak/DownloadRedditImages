@@ -33,6 +33,7 @@ directory = ""
 
 def getOs():
     global directory
+    global ops
     print("Inside getOs")
     username = pwd.getpwuid(os.getuid()).pw_name
     if platform.system()=="Darwin":
