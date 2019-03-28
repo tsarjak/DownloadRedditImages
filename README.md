@@ -6,7 +6,7 @@ This Script will download all the Images (First page of hot section) from /r/Wal
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
 This works only on Gnome Based Desktops.
 
-**Grab the stable release from here - [v1.1](https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v1.1)**
+**Grab the stable release from here - [v1.1.2](https://github.com/tsarjak/WallpapersFromReddit/releases/latest)**
 
 ### To Install
 ```shell
@@ -42,6 +42,3 @@ nohup command is used to keep the script running in background, even when the te
 
 Goto "Startup Applications"
 Click "Add" -> Click "Custom Command" -> Enter command as "nohup python ~/wallpaper.py &", enter name and other details and save
-
-
-#### Custom Preferences and more Subreddits comming soon! :)
