@@ -4,11 +4,16 @@ import glob
 import json
 import os
 import time
-import urllib2
 from PIL import Image
 import pwd
 import platform
 
+
+# For python 2.x and 3.x compatibility
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 
 def parse_args():
         parser = argparse.ArgumentParser(
@@ -74,7 +79,7 @@ def setwallpaper(listwallpaper, count):
         filepath = "osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"" + listwallpaper[count] +"\"'"
     os.system(filepath)
 
-    
+
 def download(dCount):
     checkVar = 0
     # To avoid 'Too many requests error - 2 second wait and try again in case error
@@ -118,14 +123,14 @@ def download(dCount):
         except:
             pass
             time.sleep(2)
-    print dCount
+    print(dCount)
     return dCount
 
 
 
 def countdownDownload(timerDownload, timerupdate, count):
     '''Time Countdown function to check wallpaper change time or download time'''
-    
+
     stu = timerupdate
 
     listwallpaper = returnwallpaper()
