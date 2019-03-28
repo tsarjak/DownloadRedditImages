@@ -11,6 +11,8 @@ This works only on Gnome Based Desktops.
 ### To Install
 ```shell
 git clone https://github.com/tsarjak/WallpapersFromReddit.git
+cd WallpapersFromReddit
+sudo pip install -r requirements.txt
 ```
 
 
