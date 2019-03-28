@@ -100,7 +100,7 @@ def download(dCount):
 
         try:
 
-            print imurl
+            print(imurl)
 
             req = urllib2.Request(imurl+".jpg")
             time.sleep(2)
