@@ -98,7 +98,10 @@ def download(dCount):
     # To avoid 'Too many requests error - 2 second wait and try again in case error
     while(checkVar == dCount):
         try:
-            obj = urllib2.urlopen(url)
+            #obj = urllib2.urlopen(url)
+            opener = urllib2.build_opener()
+            opener.addheaders = [('User-Agent', 'Linux:WallpapersFromReddit:0.1.5 (by tsarjak)')]
+            obj = opener.open(url)
             data = json.load(obj)
             print("Connection Established! Hurray!")
             checkVar += 1
