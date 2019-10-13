@@ -22,6 +22,10 @@ def parse_args():
             '--subreddit', type=str, help='Your choice of subreddit to download Images')
         parser.add_argument('-hq', action='store_true',
                             help='If you want to download only high quality photos')
+        parser.add_argument('-landscape', action='store_true',
+                            help='If you want to download only landscape photos')
+        parser.add_argument('-portrait', action='store_true',
+                            help='If you want to download only portrait photos')
         parser.add_argument(
             '-download', action='store_true', help='Download the photos now!')
         args = parser.parse_args()
@@ -32,6 +36,8 @@ def parse_args():
 url = 'http://www.reddit.com/r/wallpaper.json'
 WallpaperCount = 0
 hqchoice = 0
+landscape_only = 0
+portrait_only = 0
 downloadNow = 0
 ops=0
 directory = ""
@@ -54,10 +60,17 @@ def removeUnwantedPhotos(listwallpaper):
         if os.path.getsize(paths) < 102400:
             np = "rm " + paths
             os.system(np)
-        if hqchoice == 1:
+        if hqchoice or landscape_only or portrait_only:
             with Image.open(paths) as im:
                 width, height = im.size
-                if width < 1500 or height < 1500:
+                remove_image = False
+                if hqchoice and width < 1500 or height < 1500:
+                    remove_image = True
+                if landscape_only and height * 1.1 > width:
+                    remove_image = True
+                if portrait_only and width * 1.1 > height:
+                    remove_image = True
+                if remove_image:
                     np = "rm" + paths
                     os.system(np)
 
@@ -211,6 +224,10 @@ if __name__ == '__main__':
         url = 'http://www.reddit.com/r/' + user_choice.subreddit + '.json'
     if user_choice.hq == True:
         hqchoice = 1
+    if user_choice.landscape == True:
+        landscape_only = 1
+    if user_choice.portrait == True:
+        portrait_only = 1
     print(user_choice.download)
     if user_choice.download == True:
         downloadNow = 1
