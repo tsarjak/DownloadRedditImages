@@ -121,7 +121,7 @@ def download(dCount):
 
         try:
 
-            print(imurl)
+            print("Downloading:", imurl)
 
             req = urllib2.Request(imurl+".jpg")
             time.sleep(2)
@@ -137,6 +137,7 @@ def download(dCount):
             dCount = dCount + 1
 
         except:
+            print("Download failed for some reason")
             pass
             time.sleep(2)
     print(dCount)
