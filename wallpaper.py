@@ -158,7 +158,7 @@ def countdownDownload(timerDownload, timerupdate, count):
         timerupdate = stu
         timerDownload = timerDownload - stu
 
-    dCount = download()
+    dCount = download(dCount)
     return dCount
 
 def fetchPreferences():
