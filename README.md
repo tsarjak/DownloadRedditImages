@@ -9,6 +9,7 @@ Using this script:
 * **Automatically set and switch Wallpaper** from the downloaded images
 * **Store the links** to all the downloaded images (in case you want to access later?)
 * Works on **Python 2.x and Python 3.x** both!
+* Specify the save location!
 
 ### Grab the latest release here! Or download it using the next step!
 DownloadRedditImages v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
@@ -32,6 +33,7 @@ python main.py
   --subreddit <your choice of subreddit> 
   --sort_type <hot|new|rising|top> 
   --sort_time <all|year|month|week|day>
+  --save_dir <Directory where you want to store the images. By default it saves in wallpapers folder>
   --update_every <Number of minutes after which you want to change the wallpapers>
   --run_for <Total number of hours you want to run the script for>
   --download_only <Toggle this to either only download the images, or to also keep cycling throught the wallpapers>
@@ -53,4 +55,4 @@ nohup command is used to keep the script running in background, even when the te
 ### Add the script to run it as startup application
 
 Goto "Startup Applications"
-Click "Add" -> Click "Custom Command" -> Enter command as "nohup python ~/wallpaper.py &", enter name and other details and save
+Click "Add" -> Click "Custom Command" -> Enter command as "nohup python ~/main.py &", enter name and other details and save
