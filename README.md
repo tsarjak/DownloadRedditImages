@@ -45,7 +45,7 @@ python wallpaper.py --subreddit earthporn -sort_type top --sort_time all --downl
 ### After First run, you might want to run the app in background (This is possible even on first run!)
 
 ```shell
-nohup python wallpaper.py &
+nohup python main.py &
 ```
 nohup command is used to keep the script running in background, even when the terminal is closed
 
