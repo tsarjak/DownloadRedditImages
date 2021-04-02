@@ -9,7 +9,7 @@ Using this script:
 * **Automatically set and switch Wallpaper** from the downloaded images
 * **Store the links** to all the downloaded images (in case you want to access later?)
 * Works on **Python 2.x and Python 3.x** both!
-* Specify the save location!
+* Specify your **custom save location**!
 
 ### Grab the latest release here! Or download it using the next step!
 DownloadRedditImages v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
