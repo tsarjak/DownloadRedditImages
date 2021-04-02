@@ -1,6 +1,7 @@
 # Download Images and Set Wallpapers from your choice of Subreddit!
 
 Using this script:
+* **No Setup Needed!**
 * **Download any number of images** from **Any Subreddit!**
 * Select your sort type **(Top, Hot, New, Controversial)**
 * Select your sort time **(All, Year, Month, Week, Day)**
