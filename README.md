@@ -10,11 +10,10 @@ Using this script:
 * **Store the links** to all the downloaded images (in case you want to access later?)
 * Works on **Python 2.x and Python 3.x** both!
 
-This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
-It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
-This works only on Gnome Based Desktops.
+### Grab the latest release here! Or download it using the next step!
+WallpapersFromReddit v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
 
-## No Dependencies! Just Download and Run!
+### No Dependencies! Just Download and Run!
 Just download the files and run the file - no need to setup anything at all!
 
 To download via Terminal:
