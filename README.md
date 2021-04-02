@@ -8,6 +8,7 @@ Using this script:
 * Extremely **Reliable Downloading.**
 * **Automatically set and switch Wallpaper** from the downloaded images
 * **Store the links** to all the downloaded images (in case you want to access later?)
+* Works on **Python 2.x and Python 3.x** both!
 
 This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
