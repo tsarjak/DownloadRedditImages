@@ -1,35 +1,45 @@
-[![Underdevelopment](https://img.shields.io/badge/Build-UnderDevelopment-red.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)  [![Passing](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
+# Download Images and Set Wallpapers from your choice of Subreddit!
 
-# Wallpapers from your choice of Subreddit (default - /r/wallpaper):
+Using this script:
+* Download any number of images from any subreddit!
+* Select your sort type (Top, Hot, New, Controversial)
+* Select your sort time (All, Year, Month, Week, Day)
+* Automatically set and switch Wallpaper from the downloaded images
+* Store the links to all the downloaded images (in case you want to access later?)
 
 This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
 This works only on Gnome Based Desktops.
 
-**Grab the stable release from here : [v1.1.2](https://github.com/tsarjak/WallpapersFromReddit/releases/latest)**
+## No Dependencies! Just Download and Run!
+Just download the files and run the file - no need to setup anything at all!
 
-### To Install
+To download via Terminal:
 ```shell
 git clone https://github.com/tsarjak/WallpapersFromReddit.git
-cd WallpapersFromReddit
-sudo pip install -r requirements.txt
 ```
 
 
 ### To run the code
+
 In terminal:
 ```shell
-#In Home Directory or the Directory in which you cloned/downloaded/installed the script
+# In the Home Directory or the Directory in which you cloned/downloaded the script
 cd ~/WallpapersFromReddit
-python wallpaper.py --subreddit <your choice of subreddit> -hq
-#add -hq at the end if you only want high quality photos from the subreddit, by default it will download all the images!
+python main.py 
+  --subreddit <your choice of subreddit> 
+  --sort_type <hot|new|rising|top> 
+  --sort_time <all|year|month|week|day>
+  --update_every <Number of minutes after which you want to change the wallpapers>
+  --run_for <Total number of hours you want to run the script for>
+  --download_only <Toggle this to either only download the images, or to also keep cycling throught the wallpapers>
 ```
-Example : 
+
+Example: 
 ```shell
-python wallpaper.py --subreddit earthporn -hq
+python wallpaper.py --subreddit earthporn -sort_type top --sort_time all --download_only
 ```
---Subreddit part is optional - By default it will fetch images from /r/wallpaper
-You can see the progress of the download after above execution
+
 
 ### After First run, you might want to run the app in background (This is possible even on first run!)
 
