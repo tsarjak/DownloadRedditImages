@@ -1,11 +1,12 @@
 # Download Images and Set Wallpapers from your choice of Subreddit!
 
 Using this script:
-* Download any number of images from any subreddit!
-* Select your sort type (Top, Hot, New, Controversial)
-* Select your sort time (All, Year, Month, Week, Day)
-* Automatically set and switch Wallpaper from the downloaded images
-* Store the links to all the downloaded images (in case you want to access later?)
+* **Download any number of images** from **Any Subreddit!**
+* Select your sort type **(Top, Hot, New, Controversial)**
+* Select your sort time **(All, Year, Month, Week, Day)**
+* Extremely **Reliable Downloading.**
+* **Automatically set and switch Wallpaper** from the downloaded images
+* **Store the links** to all the downloaded images (in case you want to access later?)
 
 This Script will download all the Images (First page of hot section) from /r/Wallpaper subreddit to a local folder every 24 hours.
 It will also automate a Slideshow change of Wallpapers from that local storage. Wallpaper will change every 30 Minutes.
