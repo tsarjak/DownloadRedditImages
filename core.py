@@ -15,7 +15,8 @@ class WallpaperDownloader:
     def __init__(self,
                  subreddit: str = 'wallpaper',
                  sort_by: str = 'top',
-                 sort_time: str = 'all'):
+                 sort_time: str = 'all',
+                 save_dir: str = 'default'):
         """
         Initialize the preference and link to subreddit.
         :param subreddit: Name of the subreddit.
@@ -26,7 +27,7 @@ class WallpaperDownloader:
                                                                                   sort_by,
                                                                                   sort_time)
         self._preferences_file = 'wp_preferences.json'
-        self._preferences = self._setup_preferences()
+        self._preferences = self._setup_preferences(save_dir=save_dir)
 
     @property
     def preferences(self) -> Dict:
@@ -96,7 +97,7 @@ class WallpaperDownloader:
                 count_removed = Utils.remove_unwanted_images(saved_images)
                 return len(saved_images) - count_removed
 
-    def _setup_preferences(self) -> Dict:
+    def _setup_preferences(self, save_dir='default') -> Dict:
         """
         Setup the preferences for downloading. Find the machine type etc if its running for the first time.
         :return: preferences - Loaded preferences.
@@ -115,6 +116,10 @@ class WallpaperDownloader:
             preferences['os_type'] = os_type
             preferences['wallpaper_dir'] = wallpaper_dir
             preferences['urls'] = dict()
+
+        # Update the default dir here.
+        if save_dir != 'default':
+            preferences['wallpaper_dir'] = save_dir
 
         # Just save preferences back to file in case of update.
         Utils.save_to_preferences(preferences, self._preferences_file)

@@ -8,12 +8,20 @@ from core import WallpaperDownloader
 
 
 def main():
+    """
+    Runs the main code. Downloads images, set and switches wallpapers.
+    """
 
+    # Process user inputs.
     args = parse_args()
+
+    # Setup the downloader.
     downloader = WallpaperDownloader(subreddit=args.subreddit,
                                      sort_time=args.sort_time,
-                                     sort_by=args.sort_by)
+                                     sort_by=args.sort_by,
+                                     save_dir=args.save_dir)
 
+    # Download and return the total number of downloads.
     total_downloaded = downloader.download(max_count=args.max_download_count)
 
     print('Downloaded {} images from /r/{} sorted by {} for sort time {}'.format(total_downloaded,
@@ -53,6 +61,9 @@ def main():
 
 
 def parse_args():
+    """
+    Fetch user inputs from command line.
+    """
     parser = argparse.ArgumentParser(
         description='Download images and set wallpaper from your choice of subreddit!')
     parser.add_argument('--subreddit', type=str, default='wallpaper',
@@ -63,6 +74,9 @@ def parse_args():
                         help='Sort time for subreddit. Default is "day". Options: all|year|month|week|day')
     parser.add_argument('--max_download_count', type=int, default=20,
                         help='Maximum number of images to download. Default is 20.')
+    parser.add_argument('--save_dir', type=str, default='default',
+                        help='Where to save downloaded images? '
+                             'By default it saves at machine default wallpapers folder')
     parser.add_argument('--download_only', action='store_true', default=False,
                         help='Only download the photos. Skip setting up wallpaper.')
     parser.add_argument('--update_every', type=int, default=30,

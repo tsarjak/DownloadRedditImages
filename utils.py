@@ -28,7 +28,7 @@ class Utils:
             json.dump(preferences, f)
 
     @staticmethod
-    def load_preferences(preferences_file: str) -> Dict[str, Dict]:
+    def load_preferences(preferences_file: str) -> Dict:
         """
         Load the preferences from JSON file and return as Dict.
         :param preferences_file: Location of the file containing the preferences.
