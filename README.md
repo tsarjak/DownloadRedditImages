@@ -11,7 +11,7 @@ Using this script:
 * Works on **Python 2.x and Python 3.x** both!
 
 ### Grab the latest release here! Or download it using the next step!
-WallpapersFromReddit v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
+DownloadRedditImages v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
 
 ### No Dependencies! Just Download and Run!
 Just download the files and run the file - no need to setup anything at all!
@@ -27,7 +27,7 @@ git clone https://github.com/tsarjak/WallpapersFromReddit.git
 In terminal:
 ```shell
 # In the Home Directory or the Directory in which you cloned/downloaded the script
-cd ~/WallpapersFromReddit
+cd ~/DownloadRedditImages
 python main.py 
   --subreddit <your choice of subreddit> 
   --sort_type <hot|new|rising|top> 
