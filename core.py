@@ -68,7 +68,7 @@ class WallpaperDownloader:
                 image_id = content['data']['id']
 
                 # Set image save name
-                img_save_name = '{}_{}.jpg'.format(image_title, image_id)
+                img_save_name = '{}_{}.jpg'.format(image_title.replace("/", "_"), image_id)
                 img_save_name = osp.join(self._preferences['wallpaper_dir'], img_save_name)
 
                 # If we have already downloaded the image, we can skip.
