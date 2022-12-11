@@ -42,19 +42,37 @@ python download.py
   --max_trials <Maximum number of trials to fetch subreddit data. Sometimes the response is slow and multiple attempts are needed. Default=20.>
 ```
 
-Example: 
+## Example: 
 ```shell
-python download.py --subreddit earthporn -sort_type top --sort_time all --max_post_downloads 50 --download_dir /Users/user_me/Pictures/RedditMedia/
+python download.py --subreddit pics -sort_type top --sort_time all --max_post_downloads 40 --download_dir /Users/user_me/Pictures/RedditMedia/
 # This will download top 50 posts of all time from earthporn subreddit to /Users/user_me/Pictures/RedditMedia folder.
 ```
+* Without tqdm installed:
+<img width="741" alt="Screen Shot 2022-12-11 at 2 31 50 AM" src="https://user-images.githubusercontent.com/9898343/206898666-d9f95e4f-3bd1-4f37-9372-32f4009a434c.png">
 
-### Changelog: v2.1.0 vs v2.0.0:
+* With tqdm installed (optional):
+<img width="944" alt="Screen Shot 2022-12-11 at 2 20 41 AM" src="https://user-images.githubusercontent.com/9898343/206898223-3872e046-a8d3-4199-b4da-00ed9a429005.png">
+
+
+### Changelogs:
+
+#### v2.1.1 - Dec 11, 2022:
+* Code cleanup and minor bug fixes.
+
+#### v2.1.0 - Dec 10, 2022:
 * Added support for mp4 and gif downloads.
 * Added support to download directly from media servers (imgur, i.redd.it, gfycat, redgifs) instead of reddit post previews.
 * For other media servers, fallback to reddit post preview download.
 * Added native progress bar. As well as tqdm progress bar for those who already have it installed on their systems.
 * Removed support for automatic wallpaper changing for Linux and Mac. Support will be added back in v2.1.1.
 * Removed support for python v2.x. Some requests/url libraries are difficult to maintain for python v2.x now.
+
+
+#### v2.0.0 - April 1, 2021:
+* With this release, WallpapersFromReddit is a **No Setup Needed** script. This release **gets rid of all the requirements**, essentially making this a download and run program.
+* Add support to select the sort_type for downloading images. Previously, only ```hot``` was supported, but now ```hot, top, new, controversial``` are supported.
+* Add support to select the sort_time for downloading images. Previously, only ```day``` was supported, but now ```day, week, month, year, all``` are supported.
+* A major overhaul of the entire codebase. The previous code has been refactored for clarity, optimization and to avoid some unwanted and unexpected behavior.
 
 #### Grab the previous release here! For wallpaper and python v2.x support.
 DownloadRedditImages v2.0.0 - https://github.com/tsarjak/WallpapersFromReddit/releases/tag/v2.0.0
