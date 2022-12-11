@@ -36,7 +36,7 @@ class RedditStateHandler:
         """
         Return the current reddit webpage as JSON dict.
         """
-        subreddit_data = None        
+        subreddit_data = {'data': {'children': None}}        
         for _ in range(self._max_trials):
             try:
                 subreddit_page = request.urlopen(self.current_url)

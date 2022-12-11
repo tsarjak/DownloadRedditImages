@@ -1,13 +1,34 @@
 from multiprocessing import Pool
 import os
 import time
+from typing import Tuple
 from counter_and_status_bar import MultiProcessingCounterAndStatusBar
 from downloaders import MediaDownloader
 import fire
 from utils import check_max_simultaneous_downloads, get_default_download_dir
 
 from web_handler import RedditStateHandler
+
+
+def download_for_multiple_subreddits(subreddits: Tuple[str, Tuple[str, ...]],
+                                     sort_time: str,
+                                     sort_by: str,
+                                     download_dir: str = None,
+                                     max_post_downloads: int = 10,
+                                     max_trials: int = 20,
+                                     max_simultaneous_downloads: int = 16):
     
+    if type(subreddits) == str:
+        subreddits = (subreddits, )
+    for subreddit in subreddits:
+        start_download(subreddit=subreddit,
+                       sort_by=sort_by,
+                       sort_time=sort_time,
+                       download_dir=download_dir,
+                       max_post_downloads=max_post_downloads,
+                       max_trials=max_trials,
+                       max_simultaneous_downloads=max_simultaneous_downloads)
+        
     
 def start_download(subreddit: str,
                    sort_time: str,
@@ -79,4 +100,4 @@ def start_download(subreddit: str,
         
     
 if __name__ == '__main__':
-    fire.Fire(start_download)
+    fire.Fire(download_for_multiple_subreddits)

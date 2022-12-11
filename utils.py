@@ -23,12 +23,17 @@ def check_if_empty_and_delete_file(file_path, allowed_size: int = 10240) -> bool
     """
     Check if the given file is empty (smaller than allowed size of 10kb), then delete it, and return flag.
     """
-    is_empty_file = os.path.getsize(file_path) < allowed_size
-    
-    if is_empty_file:
-        os.remove(file_path)
+    try:
+        is_empty_file = os.path.getsize(file_path) < allowed_size
         
+        if is_empty_file:
+            os.remove(file_path)
+            
+    except:
+        is_empty_file = True
+    
     return is_empty_file
+    
     
     
 def get_gfycat_redgif_url(media_url: str,
@@ -83,11 +88,11 @@ def check_max_simultaneous_downloads(max_simultaneous_downloads: int):
     Check if max_simultaneous_downloads are greater than CPU count on machine. 
     If so, correct it and return the correct value.
     """
-    if max_simultaneous_downloads >= os.cpu_count() - 2:
+    if max_simultaneous_downloads >= 4 * os.cpu_count():
         print(f'max_simultaneous_downloads too high: {max_simultaneous_downloads}. '
               f'Max CPU count available: {os.cpu_count()}. '
-              f'Setting max_simultaneous_downloads to {os.cpu_count() - 2}')
-        max_simultaneous_downloads = os.cpu_count() - 2
+              f'Setting max_simultaneous_downloads to {(4 * os.cpu_count()) - 2}')
+        max_simultaneous_downloads = (4 * os.cpu_count()) - 2
         
     return max_simultaneous_downloads
     
