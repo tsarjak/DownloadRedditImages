@@ -47,10 +47,10 @@ python download.py
 python download.py --subreddit pics -sort_type top --sort_time all --max_post_downloads 40 --download_dir /Users/user_me/Pictures/RedditMedia/
 # This will download top 50 posts of all time from earthporn subreddit to /Users/user_me/Pictures/RedditMedia folder.
 ```
-Without tqdm installed:
+* Without tqdm installed:
 <img width="741" alt="Screen Shot 2022-12-11 at 2 31 50 AM" src="https://user-images.githubusercontent.com/9898343/206898666-d9f95e4f-3bd1-4f37-9372-32f4009a434c.png">
 
-With tqdm installed (optional):
+* With tqdm installed (optional):
 <img width="944" alt="Screen Shot 2022-12-11 at 2 20 41 AM" src="https://user-images.githubusercontent.com/9898343/206898223-3872e046-a8d3-4199-b4da-00ed9a429005.png">
 
 ```
