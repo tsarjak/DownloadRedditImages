@@ -5,12 +5,12 @@ Using this script:
 * **Download any number of images** from **Any Subreddit!**
 * Select your sort type **(Top, Hot, New, Controversial)**
 * Select your sort time **(All, Year, Month, Week, Day)**
-* Extremely **Reliable Downloading**
+* Extremely **Reliable Downloading.** With **progress bar showing ETA.**
 * Download using **ParallelProcessing**
 * Specify your **custom save location**
 * Major reddit media servers supported **(i.redd.it, imgur, gfycat, redgif)**
 * **If media server is unsupported, Download raw previews**
-* (Optional) Install tqdm to see progress bar and time estimates.
+* (Optional) Install tqdm to see tqdm progress and time estimates. Without tqdm, native progress bar is printed to terminal output.
 
 
 #### PS: Automatic wallpaper setting from downloaded images and support for python v2.x has been removed in latest update. Feature will be added back soon(~1 week). Please use the old version if you absolutely need that feature.
@@ -21,8 +21,10 @@ Just download the files and run the file - no need to setup anything at all!
 To download via Terminal:
 ```shell
 git clone https://github.com/tsarjak/WallpapersFromReddit.git
-```
 
+# Next step is Fully Optional - to use tqdm progress bar. Without this, native progress bar will show up with exact same features, just a little less pretty.
+pip install tqdm
+```
 
 ### To run the code
 
@@ -50,6 +52,7 @@ python download.py --subreddit earthporn -sort_type top --sort_time all --max_po
 * Added support for mp4 and gif downloads.
 * Added support to download directly from media servers (imgur, i.redd.it, gfycat, redgifs) instead of reddit post previews.
 * For other media servers, fallback to reddit post preview download.
+* Added native progress bar. As well as tqdm progress bar for those who already have it installed on their systems.
 * Removed support for automatic wallpaper changing for Linux and Mac. Support will be added back in v2.1.1.
 * Removed support for python v2.x. Some requests/url libraries are difficult to maintain for python v2.x now.
 

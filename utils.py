@@ -68,7 +68,7 @@ def construct_local_filename(title: str,
     title = title.replace('/', '-')
     
     # Ensure title isn't too long, to avoid OSError: File name too long.
-    title = title[:40]
+    title = title[:150]
     
     if file_suffix is None:
         file_suffix = os.path.splitext(download_url)[1]

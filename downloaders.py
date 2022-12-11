@@ -1,10 +1,8 @@
-from hashlib import md5
 import os
-import shutil
 from typing import Any, Dict
 from urllib.request import urlretrieve
 import requests
-from counter import MultiProcessingCounter
+from counter_and_status_bar import MultiProcessingCounterAndStatusBar
 
 from utils import check_if_empty_and_delete_file, construct_local_filename, get_gfycat_redgif_url
 
@@ -15,13 +13,13 @@ HEADERS = {
 class MediaDownloader:
     
     local_download_dir: str
-    global_counter: MultiProcessingCounter
+    global_counter: MultiProcessingCounterAndStatusBar
     max_posts_download: int
     
     @classmethod
     def init(cls, 
              local_download_dir: str,
-             global_counter: MultiProcessingCounter,
+             global_counter: MultiProcessingCounterAndStatusBar,
              max_posts_download: int):
         """
         Setup the local download directory.

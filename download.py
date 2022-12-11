@@ -1,7 +1,7 @@
 from multiprocessing import Pool
 import os
 import time
-from counter import MultiProcessingCounter
+from counter_and_status_bar import MultiProcessingCounterAndStatusBar
 from downloaders import MediaDownloader
 import fire
 from utils import check_max_simultaneous_downloads, get_default_download_dir
@@ -28,7 +28,7 @@ def start_download(subreddit: str,
     :param max_simultaneous_downloads: Maximum number of simultaneous downloads. Default 16.
     """
     # If download directory is not specified, setup the default directory.
-    download_dir = get_default_download_dir()
+    download_dir = get_default_download_dir() if download_dir is None else download_dir
     
     # Set download dir to subreddit name inside provided download dir.
     download_dir = os.path.join(download_dir, subreddit)
@@ -43,14 +43,14 @@ def start_download(subreddit: str,
                                               max_trials=max_trials)
     
     # Initialize the multiprocessing counter.
-    MultiProcessingCounter.init(total_count=max_post_downloads,
+    MultiProcessingCounterAndStatusBar.init(total_count=max_post_downloads,
                                 subreddit_name=subreddit,
                                 sort_by=sort_by,
                                 sort_time=sort_time,
                                 local_download_dir=download_dir)
     
     # Loop till we reach max_post_downloads.
-    while MultiProcessingCounter.global_counter.value < max_post_downloads:
+    while MultiProcessingCounterAndStatusBar.global_counter.value < max_post_downloads:
         # Get subreddit as json.
         subreddit_data = reddit_state_handler.webpage_as_json
         
@@ -61,7 +61,7 @@ def start_download(subreddit: str,
         
         # Initialize the media downloader.
         MediaDownloader.init(local_download_dir=download_dir,
-                             global_counter=MultiProcessingCounter,
+                             global_counter=MultiProcessingCounterAndStatusBar,
                              max_posts_download=max_post_downloads)
         
         # Setup page post data and download using multiprocessing.
@@ -75,7 +75,7 @@ def start_download(subreddit: str,
         if not next_page_available:
             break
     
-    MultiProcessingCounter.close_counter()
+    MultiProcessingCounterAndStatusBar.close_counter()
         
     
 if __name__ == '__main__':
