@@ -2,7 +2,7 @@
 
 Using this script:
 * **No Setup Needed!**
-* **Download any number of images** from **Any Subreddit!**
+* **Download any number of images** from **Any Subreddit!** Tested by downloading 500 images.
 * Select your sort type **(Top, Hot, New, Controversial)**
 * Select your sort time **(All, Year, Month, Week, Day)**
 * Extremely **Reliable Downloading.** With **progress bar showing ETA.**
