@@ -1,7 +1,6 @@
 import os
 import platform
 import pwd
-from typing import Any, Dict
 import requests
 
 VALID_SORT_TIME_OPTIONS = ['all', 'year', 'month', 'week', 'day']
@@ -21,7 +20,9 @@ def verify_sort_options(sort_time: str, sort_by: str) -> None:
     
     
 def check_if_empty_and_delete_file(file_path, allowed_size: int = 10240) -> bool:
-    
+    """
+    Check if the given file is empty (smaller than allowed size of 10kb), then delete it, and return flag.
+    """
     is_empty_file = os.path.getsize(file_path) < allowed_size
     
     if is_empty_file:
@@ -31,11 +32,12 @@ def check_if_empty_and_delete_file(file_path, allowed_size: int = 10240) -> bool
     
     
 def get_gfycat_redgif_url(media_url: str,
-                          domain_type: str):
+                          domain_type: str) -> str:
     """
     Get URL for gfycat mp4 from gfycat name.
     :param media_url: Media URL.
     :param domain_type: oneOf(gfycat, redgif).
+    :return: URL for the final download link for gfycat or redgifs.
     """
     media_name = media_url.split('/')[-1]
     data = None

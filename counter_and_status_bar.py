@@ -3,7 +3,7 @@ import time
 
 try:
     from tqdm import tqdm
-    TQDM_IMPORTED = False
+    TQDM_IMPORTED = True
 except ImportError:
     TQDM_IMPORTED = False
 

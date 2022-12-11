@@ -1,6 +1,5 @@
 import os
 from typing import Any, Dict
-from urllib.request import urlretrieve
 import requests
 from counter_and_status_bar import MultiProcessingCounterAndStatusBar
 
@@ -11,10 +10,12 @@ HEADERS = {
 }
 
 class MediaDownloader:
-    
-    local_download_dir: str
-    global_counter: MultiProcessingCounterAndStatusBar
-    max_posts_download: int
+    """
+    Main media downloader class. This internally calls methods as needed. Handles downloading, updating progress bar.
+    """
+    local_download_dir: str # local directory to download media.
+    global_counter: MultiProcessingCounterAndStatusBar # Counter and Progress bar across multiple processes.
+    max_posts_download: int # max number of posts to download
     
     @classmethod
     def init(cls, 
@@ -31,7 +32,7 @@ class MediaDownloader:
         os.makedirs(local_download_dir, exist_ok=True)
     
     @staticmethod
-    def download_post(post_details: Dict[str, Any]):
+    def download_post(post_details: Dict[str, Any]) -> None:
         """
         Download the post from post details.
         """
@@ -57,8 +58,10 @@ class MediaDownloader:
         MediaDownloader.global_counter.increment_counter(download_successful=download_successful)
         
     
-    
 class MediaDownloadHelper:
+    """
+    Helper class to download media files.
+    """
     
     def __init__(self, 
                  domain: str,
@@ -188,7 +191,12 @@ class MediaDownloadHelper:
         self._core_download(download_url=preview_url, local_filename=local_filename)
         return local_filename
         
-    def _core_download(self, download_url: str, local_filename: str):
+    def _core_download(self, download_url: str, local_filename: str) -> None:
+        """
+        Core method to download media. Downloads using streaming method from requests.
+        :param download_url: URL to download media.
+        :param local_filename: Filename to download media to.
+        """
         
         # If already exists locally, then just skip the download.
         if os.path.exists(local_filename):
