@@ -44,7 +44,7 @@ python download.py
 
 ## Example: 
 ```shell
-python download.py --subreddit pics -sort_type top --sort_time all --max_post_downloads 40 --download_dir /Users/user_me/Pictures/RedditMedia/
+python download.py --subreddit pics --sort_type top --sort_time all --max_post_downloads 40 --download_dir /Users/user_me/Pictures/RedditMedia/
 # This will download top 50 posts of all time from earthporn subreddit to /Users/user_me/Pictures/RedditMedia folder.
 ```
 * Without tqdm installed:
@@ -64,7 +64,7 @@ python download.py --subreddit pics -sort_type top --sort_time all --max_post_do
 * Added support to download directly from media servers (imgur, i.redd.it, gfycat, redgifs) instead of reddit post previews.
 * For other media servers, fallback to reddit post preview download.
 * Added native progress bar. As well as tqdm progress bar for those who already have it installed on their systems.
-* Removed support for automatic wallpaper changing for Linux and Mac. Support will be added back in v2.1.1.
+* Removed support for automatic wallpaper changing for Linux and Mac. Support will be added back in v2.1.2.
 * Removed support for python v2.x. Some requests/url libraries are difficult to maintain for python v2.x now.
 
 
