@@ -109,3 +109,27 @@ def get_default_download_dir():
     default_dir = f'/Users/{username}/Pictures/RedditMedia/' if os_type == 'Darwin' else f'/home/{username}/RedditMedia/'
 
     return default_dir
+
+
+def print_progress_bar(iteration, total, prefix='', suffix='', decimals=1, length=50, fill='█'):
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filled_length = int(length * iteration // total)
+    bar = fill * filled_length + '-' * (length - filled_length)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end='\r')
+    # Print New Line on Complete
+    if iteration == total:
+        print()
+        
+
+def get_media_download_url(media_url: str, domain: str) -> str:
+    try:
+        if domain == 'gfycat.com':
+            return get_gfycat_redgif_url(media_url, 'gfycat')
+        elif domain == 'redgifs.com':
+            return get_gfycat_redgif_url(media_url, 'redgif')
+        elif domain == 'i.redd.it' or domain == 'i.imgur.com':
+            return media_url
+        return None
+    except:
+        print('Error fetching media url')
+        return None
