@@ -29,6 +29,7 @@ class RedditStateHandler:
         self._max_trials = max_trials
         
         self._core_url = f'https://www.reddit.com/r/{self._subreddit}/{self._sort_by}.json?raw_json=1&t={self._sort_time}'
+        print(self._core_url)
         self._current_url = self._core_url
         
     @property
@@ -39,6 +40,7 @@ class RedditStateHandler:
         subreddit_data = {'data': {'children': None}}        
         for _ in range(self._max_trials):
             try:
+                print('try fetching reddit')
                 subreddit_page = request.urlopen(self.current_url)
                 subreddit_data = json.load(subreddit_page)
                 break
