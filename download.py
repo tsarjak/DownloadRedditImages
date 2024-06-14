@@ -21,6 +21,16 @@ def start_download(subreddit: str,
                    max_trials: int = 20,
                    max_simultaneous_downloads: int = 16,
                    ):
+    """
+    Start downloading images from a specified subreddit.
+    :param subreddit: The name of the subreddit to download images from.
+    :param sort_time: The time period to sort posts by (e.g., 'day', 'week', 'month', 'year', 'all').
+    :param sort_by: The criterion to sort posts by (e.g., 'top', 'new', 'hot').
+    :param download_dir: The directory where images will be downloaded. Defaults to None, which means the default download directory will be used.
+    :param max_post_downloads: The maximum number of posts to download images from. Defaults to 10.
+    :param max_trials: The maximum number of trials to attempt downloading before stopping. Defaults to 20.
+    :param max_simultaneous_downloads: The maximum number of simultaneous downloads. Defaults to 16.
+    """
     download_dir = get_default_download_dir() if download_dir is None else download_dir
     download_dir = os.path.join(download_dir, subreddit)
     max_simultaneous_downloads = check_max_simultaneous_downloads(max_simultaneous_downloads)
